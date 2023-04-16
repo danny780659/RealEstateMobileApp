@@ -30,9 +30,6 @@ class PropertyListFragment : Fragment() {
         mPropertyArray.add(Property("5", "12 Arrol Street, Camp Hill, Qld 4152", "$1,977,972", "Roger Carr", "house5"))
         mPropertyArray.add(Property("6", "37 Kahli Place, Carseldine, Qld 4034", "$970,692", "Libby Patrick", "house6"))
 
-        //val resourceId = this.resources.getIdentifier("house1", "drawable", this.getPackageName());
-        //findViewById<ImageView>(R.id.house_image).setImageResource(resourceId)
-
         val context = activity as ViewModelStoreOwner
         mPropertyDetailsViewModel = ViewModelProvider(context).get(PropertyDetailsViewModel::class.java)
     }

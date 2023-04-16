@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -19,13 +20,16 @@ class PropertyDetailsFragment : Fragment() {
     private lateinit var mPropertyDetailsViewModel: PropertyDetailsViewModel
     private lateinit var mProperty: Property
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         var view = inflater.inflate(R.layout.fragment_details, container, false)
 
         val context = activity as ViewModelStoreOwner
-        mPropertyDetailsViewModel = ViewModelProvider(context).get(PropertyDetailsViewModel::class.java)
+        mPropertyDetailsViewModel =
+            ViewModelProvider(context).get(PropertyDetailsViewModel::class.java)
 
         mProperty = mPropertyDetailsViewModel.selectedProperty.value!!
 
@@ -38,9 +42,6 @@ class PropertyDetailsFragment : Fragment() {
         val agentNameText = view?.findViewById<TextView>(R.id.agentName)
         agentNameText?.text = mProperty.agentName
 
-       // val imageName = view?.findViewById<TextView>(R.id.imageName)
-        //imageName?.image = mProperty.imageName
-
         val doneButton = view?.findViewById<Button>(R.id.done)
 
         doneButton?.setOnClickListener { _ ->
@@ -50,7 +51,6 @@ class PropertyDetailsFragment : Fragment() {
 
             mPropertyDetailsViewModel.editedProperty.value = mProperty
         }
-
         return view
     }
 }
