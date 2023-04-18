@@ -1,8 +1,10 @@
 package com.example.realestatemobileapp
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 
@@ -18,17 +20,6 @@ class MainActivity : AppCompatActivity() {
         mPropertyDetailsViewModel = ViewModelProvider(this).get(PropertyDetailsViewModel::class.java)
 
         mPropertyDetailsViewModel.selectedProperty.observe(this) {
-            loadFragment(PropertyDetailsFragment.newInstance())
-        }
-
-        mPropertyDetailsViewModel.editedProperty.observe(this) {
-            loadFragment(PropertyListFragment.newInstance())
-        }
-
-/*
-        // we will persist data later using the database - However if we wanted to do it here
-        // we can put the list fragment on the stack and pop it off rather than recreating it
-        mPropertyDetailsViewModel.selectedProperty.observe(this) {
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.container, PropertyDetailsFragment.newInstance())
@@ -39,16 +30,12 @@ class MainActivity : AppCompatActivity() {
         mPropertyDetailsViewModel.editedProperty.observe(this) {
             supportFragmentManager.popBackStack()
         }
-*/
+
         if (savedInstanceState == null) {
             loadFragment(PropertyListFragment.newInstance())
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu. menu_main, menu)
-        return true
-    }
     fun loadFragment(fragment: Fragment)
     {
         supportFragmentManager
